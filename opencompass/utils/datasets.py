@@ -44,6 +44,9 @@ def get_data_path(dataset_id: str, local_mode: bool = False):
             f'{dataset_id} is not supported in HuggingFace'
         return hf_id
     else:
+        # use config path if dataset_id is a local path
+        if dataset_id.startswith('data/'):
+            return dataset_id
         # for the local path
         local_path = DATASETS_MAPPING[dataset_id]['local']
         local_path = os.path.join(cache_dir, local_path)
