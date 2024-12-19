@@ -22,6 +22,10 @@ def get_data_path(dataset_id: str, local_mode: bool = False):
     # For absolute path customized by the users
     if dataset_id.startswith('/'):
         return dataset_id
+    
+    # compatible with old dataset files
+    if dataset_id.startswith('data/'):
+        return "./" + dataset_id
 
     # For relative path, with CACHE_DIR
     if local_mode:
